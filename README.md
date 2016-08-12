@@ -8,8 +8,7 @@
 1.  *WHEN YOU ARE READY TO PUSH* do so with `git push --set-upstream origin training/many-to-many`
 1.  Install dependencies with `bundle install`.
 1.  Add secrets to `config/secrets.yml`.
-1.  Create a database with `bundle exec rake db:create`.
-1.  Create a database schema with `bundle exec rake db:migrate`.
+1.  Setup a clean database with `bundle exec rake db:nuke_pave`.
 1.  Run the HTTP server with `bundle exec rails server`.
 
 ## Where We Left Off
@@ -81,7 +80,7 @@ rails g migration RemoveDoctorIdFromPatient doctor_id:integer
 and this creates the following migration:
 
 ```ruby
-class RemoveAuthorIdFromBooks < ActiveRecord::Migration
+class RemoveDoctorIdFromPatients < ActiveRecord::Migration
   def change
     remove_column :patients, :doctor_id, :integer
   end
@@ -160,7 +159,7 @@ class Patient < ActiveRecord::Base
 end
 ```
 
-In our author model we will do something similar:
+In our doctor model we will do something similar:
 
 ```ruby
 # Doctor Model
@@ -209,12 +208,12 @@ First, let's open our Rails console with `rails console`
 And Let's create some doctors and patients
 
 ```ruby
-# books
+# patients
 patient1 = Patient.create([{ given_name: 'Jason', surname: 'Weeks'}])
 patient2 = Patient.create([{ given_name: 'Lauren', surname: 'Fazah'}])
 patient3 = Patient.create([{ given_name: 'Antony', surname: 'Donovan'}])
 
-#authors
+# doctors
 doctor1 = Doctor.create([{ given_name: 'Dr.Good', surname: 'Face'}])
 doctor2 = Doctor.create([{ given_name: 'Dr.Bad', surname: 'Hands'}])
 doctor3 = Doctor.create([{ given_name: 'Dr.Giggles', surname: 'McGee'}])
@@ -248,7 +247,7 @@ end
 
 ## Test Using Curl
 
-Now, let's test this using curl. To connect `authors` and `patients` we are going
+Now, let's test this using curl. To connect `doctors` and `patients` we are going
 to post to the join table:
 
 ```bash
