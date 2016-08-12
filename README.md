@@ -2,9 +2,10 @@
 
 # Rails API Many-To-Many Clinic Code Along
 
-1.  [Fork and clone](https://github.com/ga-wdi-boston/meta/wiki/ForkAndClone)
-    this repository.
-1.  Change into the new directory.
+1.  Fetch all with `git fetch --all`
+1.  Checkout `upstream` with `git checkout upstream/training/many-to-many`
+1.  Checkout and branch with `git checkout -b training/many-to-many`
+1.  *WHEN YOU ARE READY TO PUSH* do so with `git push --set-upstream origin training/many-to-many`
 1.  Install dependencies with `bundle install`.
 1.  Add secrets to `config/secrets.yml`.
 1.  Create a database with `bundle exec rake db:create`.
